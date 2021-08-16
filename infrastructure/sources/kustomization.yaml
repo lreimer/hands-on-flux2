@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - aws-eks.yaml
-  - bitnami.yaml
