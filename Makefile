@@ -19,7 +19,7 @@ bootstrap-flux2-dev:
 		--owner=$(GITHUB_USER) \
   		--repository=hands-on-flux2 \
   		--branch=env/dev \
-  		--path=./cluster \
+  		--path=./clusters/flux2-dev-cluster \
   		--personal
 
 create-prod-cluster: iam-policy.json
@@ -36,7 +36,7 @@ bootstrap-flux2-prod:
 		--owner=$(GITHUB_USER) \
   		--repository=hands-on-flux2 \
   		--branch=env/prod \
-  		--path=./cluster \
+  		--path=./clusters/flux2-prod-cluster \
   		--personal
 
 delete-clusters: delete-dev-cluster delete-prod-cluster
