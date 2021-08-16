@@ -11,7 +11,7 @@ You need to have the following tools installed locally to be able to complete al
 - [flux](https://fluxcd.io/docs/get-started/)
 - [Helm](https://helm.sh/docs/intro/install/)
 
-## Usage
+## Bootstrapping
 
 ```bash
 # define required ENV variables for the next steps to work
