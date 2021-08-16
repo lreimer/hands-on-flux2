@@ -19,8 +19,18 @@ $ export GITHUB_TOKEN=<your-token>
 $ export GITHUB_USER=lreimer
 $ export AWS_ACCOUNT_ID=export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 
+# created 2 branches to track the individual cluster states
+$ git branch env/dev
+$ git branch env/prod
+$ git push --all
+
 # setup the dev cluster and GitOps environment
 $ make create-dev-cluster
+$ make bootstrap-flux2-dev
+
+# setup the dev cluster and GitOps environment
+$ make create-prod-cluster
+$ make bootstrap-flux2-prod
 
 $ make destroy-clusters
 ```
