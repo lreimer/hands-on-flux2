@@ -1,0 +1,44 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: flux2-dev-cluster
+  region: eu-central-1
+  version: "1.19"
+
+iam:
+  withOIDC: true
+
+vpc:
+  clusterEndpoints:
+    privateAccess: true
+    publicAccess: true
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+
+fargateProfiles:
+  - name: fp-default
+    selectors:
+      - namespace: default
+      - namespace: flux-system
+      - namespace: kube-system
+            
+managedNodeGroups:
+  - name: managed-ng-1
+    instanceType: t3.medium
+    minSize: 2
+    maxSize: 5
+    desiredCapacity: 2
+    volumeSize: 20
+    ssh:
+      allow: false
+    labels: {role: worker}
+    tags:
+      nodegroup-role: worker
+    iam:
+      withAddonPolicies:
+        externalDNS: true
+        certManager: true
+        albIngress: true
