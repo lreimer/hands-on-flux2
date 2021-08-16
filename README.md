@@ -47,6 +47,12 @@ $ cp examples/webhook-receiver/ clusters/flux2-dev-cluster/
 
 $ git add -A && git commit -m "Added webhook receiver for flux-system"
 $ git push
+
+# you also need to create the webhook for the Git Repository
+# Payload URL: http://<LoadBalancerAddress>/<ReceiverURL>
+# Secret: the webhook-token value
+$ kubectl -n flux-system get svc/receiver
+$ kubectl -n flux-system get receiver/webapp
 ```
 
 ## Maintainer
