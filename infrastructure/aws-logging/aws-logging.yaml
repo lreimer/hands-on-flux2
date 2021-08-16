@@ -2,7 +2,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: aws-logging
-  namespace: kube-system
+  namespace: default
 data:
   output.conf: |
     [OUTPUT]
