@@ -1,0 +1,21 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: jakartaee8-java11
+  namespace: default
+spec:
+  interval: 5m0s
+  path: ./kubernetes
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: jakartaee8-java11
+  validation: client
+  # we supply an inline patch for the deployment
+  patchesStrategicMerge:
+    - apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: jakartaee8-java11
+      spec:
+        replicas: 2
