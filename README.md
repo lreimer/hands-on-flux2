@@ -11,7 +11,7 @@ You need to have the following tools installed locally to be able to complete al
 - [flux](https://fluxcd.io/docs/get-started/)
 - [Helm](https://helm.sh/docs/intro/install/)
 
-## Usage
+## Bootstrapping
 
 ```bash
 # define required ENV variables for the next steps to work
@@ -28,11 +28,25 @@ $ git push --all
 $ make create-dev-cluster
 $ make bootstrap-flux2-dev
 
+# next we start to add things to the cluster
+# all files to apply in the env/ branches are in the examples directory
+
 # setup the dev cluster and GitOps environment
 $ make create-prod-cluster
 $ make bootstrap-flux2-prod
 
 $ make destroy-clusters
+```
+
+## Webhook Receivers
+
+```bash
+# the relevant files are found in examples/webhook-receiver/
+$ git checkout env/dev
+$ cp examples/webhook-receiver/ clusters/flux2-dev-cluster/
+
+$ git add -A && git commit -m "Added webhook receiver for flux-system"
+$ git push
 ```
 
 ## Maintainer
