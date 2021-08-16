@@ -21,6 +21,7 @@ spec:
   values:
     clusterName: flux2-dev-cluster
     region: eu-central-1
+    vpcId: vpc-08907bbf38f6a8cc6
     serviceAccount:
       create: false
       name: aws-load-balancer-controller
