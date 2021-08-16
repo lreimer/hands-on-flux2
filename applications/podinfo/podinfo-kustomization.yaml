@@ -11,3 +11,11 @@ spec:
     kind: GitRepository
     name: podinfo
   validation: client
+  # we supply an inline patch for the deployment
+  patchesStrategicMerge:
+    - apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: podinfo
+      spec:
+        replicas: 3
