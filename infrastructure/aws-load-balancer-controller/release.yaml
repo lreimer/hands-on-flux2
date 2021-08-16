@@ -20,6 +20,7 @@ spec:
   # https://github.com/aws/eks-charts/tree/master/stable/aws-load-balancer-controller
   values:
     clusterName: flux2-dev-cluster
+    region: eu-central-1
     serviceAccount:
       create: false
       name: aws-load-balancer-controller
