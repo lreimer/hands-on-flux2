@@ -12,6 +12,8 @@ create-dev-cluster: iam-policy.json
 		--namespace=kube-system \
 		--name=aws-load-balancer-controller \
 		--attach-policy-arn=arn:aws:iam::$(AWS_ACCOUNT_ID):policy/AWSLoadBalancerControllerIAMPolicy \
+		--components-extra=image-reflector-controller,image-automation-controller \
+		--read-write-key \
 		--approve
 
 bootstrap-flux2-dev:
@@ -37,6 +39,8 @@ bootstrap-flux2-prod:
   		--repository=hands-on-flux2 \
   		--branch=env/prod \
   		--path=./clusters/flux2-prod-cluster \
+		--components-extra=image-reflector-controller,image-automation-controller \
+		--read-write-key \
   		--personal
 
 delete-clusters: delete-dev-cluster delete-prod-cluster

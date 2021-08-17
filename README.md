@@ -60,7 +60,7 @@ $ kubectl -n flux-system get receiver/webapp
 ### Infrastructure
 
 In order to declare the infrastructure overlay for the cluster, add the following YAML
-to the `clusters/flux2-dev-cluster/flux-system/gotk-sync.yml` definition.
+to the `clusters/flux2-dev-cluster/flux-system/cluster-sync.yml` definition.
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
@@ -83,7 +83,7 @@ To deploy some Helm and Git repository sources as well as useful infrastructure 
 ### Applications
 
 In order to declare the infrastructure overlay for the cluster, add the following YAML
-to the `clusters/flux2-dev-cluster/flux-system/gotk-sync.yml` definition.
+to the `clusters/flux2-dev-cluster/flux-system/cluster-sync.yml` definition.
 
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
