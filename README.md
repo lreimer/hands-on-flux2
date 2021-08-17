@@ -38,7 +38,9 @@ $ make bootstrap-flux2-prod
 $ make destroy-clusters
 ```
 
-## Webhook Receivers
+## Examples
+
+### Webhook Receivers
 
 ```bash
 # the relevant files are found in examples/webhook-receiver/
@@ -54,6 +56,55 @@ $ git push
 $ kubectl -n flux-system get svc/receiver
 $ kubectl -n flux-system get receiver/webapp
 ```
+
+### Infrastructure
+
+In order to declare the infrastructure overlay for the cluster, add the following YAML
+to the `clusters/flux2-dev-cluster/flux-system/gotk-sync.yml` definition.
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: infrastructure
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure
+  prune: true
+```
+
+Next, you can put and deploy the `Kustomizations` to the `infrastructure/` directory.
+To deploy some Helm and Git repository sources as well as useful infrastructure componentsuse the files under `examples/infrastructure/`.
+
+### Applications
+
+In order to declare the infrastructure overlay for the cluster, add the following YAML
+to the `clusters/flux2-dev-cluster/flux-system/gotk-sync.yml` definition.
+
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: applications
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  dependsOn:
+    - name: infrastructure
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./applications
+  prune: true
+  validation: client
+```
+
+Next, you can put and deploy the `Kustomizations` to the `applications/` directory.
+To deploy the podinfo example use the files under `examples/applications/`.
 
 ## Maintainer
 
