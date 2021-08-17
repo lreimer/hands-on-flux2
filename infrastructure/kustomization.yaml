@@ -5,4 +5,5 @@ resources:
   - kubernetes-sigs-sources.yaml
   - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
   - aws-load-balancer-controller/
+  - aws-observability/aws-logging.yaml
   - prometheus/
