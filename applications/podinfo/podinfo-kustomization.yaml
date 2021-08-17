@@ -12,16 +12,22 @@ spec:
     name: podinfo
   validation: client
   # we supply an inline patch for the deployment
-  patchesJson6902:
-    - target:
-        apiVersion: autoscaling/v2beta2
-        kind: HorizontalPodAutoscaler
-        name: podinfo
-      patch:
-      - op: replace
-        path: /spec/minReplicas
-        value: 3
+  # patchesJson6902:
+  #  - target:
+  #      Version: autoscaling/v2beta2
+  #      kind: HorizontalPodAutoscaler
+  #      name: podinfo
+  #    patch:
+  #    - op: replace
+  #      path: /spec/minReplicas
+  #      value: 3
   patchesStrategicMerge:
+    - apiVersion: autoscaling/v2beta2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: podinfo
+      spec:
+        minReplicas: 3
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
@@ -29,6 +35,7 @@ spec:
         labels:
           scheduler: fargate
       spec:
+        replicas: 3
         template:
           metadata:
             labels:
