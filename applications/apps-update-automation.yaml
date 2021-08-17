@@ -1,14 +1,13 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: apps-update-automation
-  namespace: default
+  name: podinfo-update-automation
+  namespace: flux-system
 spec:
   interval: 1m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
-    namespace: flux-system
   git:
     checkout:
       ref:
@@ -21,5 +20,5 @@ spec:
     push:
       branch: env/prod
   update:
-    path: ./applications
+    path: ./applications/podinfo
     strategy: Setters
