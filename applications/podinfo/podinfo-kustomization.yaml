@@ -31,17 +31,22 @@ spec:
         name: podinfo
       spec:
         replicas: 4
-    - apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: podinfo
-        labels:
-          scheduler: fargate
-      spec:
         template:
           metadata:
             labels:
               scheduler: fargate
+    # this is not working with replicas patch?!
+    # - apiVersion: apps/v1
+    #   kind: Deployment
+    #   metadata:
+    #     name: podinfo
+    #     labels:
+    #       scheduler: fargate
+    #   spec:
+    #     template:
+    #       metadata:
+    #         labels:
+    #           scheduler: fargate
     - apiVersion: v1
       kind: Service
       metadata:
