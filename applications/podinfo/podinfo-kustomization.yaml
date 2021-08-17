@@ -12,25 +12,31 @@ spec:
     name: podinfo
   validation: client
   # we supply an inline patch for the deployment
-  patchesJson6902:
-    - target:
-        version: apps/v1
-        kind: Deployment
-        name: podinfo
-      patch:
-      - op: add
-        path: /metadata/labels/scheduler
-        value: fargate
-      - op: add
-        path: /spec/template/metadata/labels/scheduler
-        value: fargate
+  # patchesJson6902:
+  #   - target:
+  #       version: apps/v1
+  #       kind: Deployment
+  #       name: podinfo
+  #     patch:
+  #     - op: add
+  #       path: /metadata/labels/scheduler
+  #       value: fargate
+  #     - op: add
+  #       path: /spec/template/metadata/labels/scheduler
+  #       value: fargate
   patchesStrategicMerge:
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
         name: podinfo
+        labels:
+          scheduler: fargate
       spec:
         replicas: 3
+        template:
+          metadata:
+            labels:
+              scheduler: fargate
     - apiVersion: v1
       kind: Service
       metadata:
