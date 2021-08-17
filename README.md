@@ -45,7 +45,7 @@ $ make destroy-clusters
 ```bash
 # the relevant files are found in examples/webhook-receiver/
 $ git checkout env/dev
-$ cp examples/webhook-receiver/ clusters/flux2-dev-cluster/
+$ cp examples/flux-system/ clusters/flux2-dev-cluster/
 
 $ git add -A && git commit -m "Added webhook receiver for flux-system"
 $ git push
