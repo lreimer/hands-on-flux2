@@ -20,8 +20,8 @@ bootstrap-flux2-dev:
   		--repository=hands-on-flux2 \
   		--branch=env/dev \
   		--path=./clusters/flux2-dev-cluster \
-		--components-extra=image-reflector-controller,image-automation-controller
-		--read-write-key
+		--components-extra=image-reflector-controller,image-automation-controller \
+		--read-write-key \
   		--personal
 
 create-prod-cluster: iam-policy.json
@@ -39,8 +39,8 @@ bootstrap-flux2-prod:
   		--repository=hands-on-flux2 \
   		--branch=env/prod \
   		--path=./clusters/flux2-prod-cluster \
-		--components-extra=image-reflector-controller,image-automation-controller
-		--read-write-key
+		--components-extra=image-reflector-controller,image-automation-controller \
+		--read-write-key \
   		--personal
 
 delete-clusters: delete-dev-cluster delete-prod-cluster
