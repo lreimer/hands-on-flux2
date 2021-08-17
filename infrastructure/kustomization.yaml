@@ -7,3 +7,4 @@ resources:
   - aws-load-balancer-controller/
   - aws-observability/aws-logging.yaml
   - prometheus/
+  - kubernetes-dashboard/
