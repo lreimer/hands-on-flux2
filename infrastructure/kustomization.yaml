@@ -4,3 +4,4 @@ resources:
   - aws-eks-sources.yaml
   - kubernetes-sigs-sources.yaml
   - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
+  - aws-load-balancer-controller/
