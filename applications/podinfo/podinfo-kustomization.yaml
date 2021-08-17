@@ -21,6 +21,10 @@ spec:
   #    - op: replace
   #      path: /spec/minReplicas
   #      value: 3
+  images:
+    - name: ghcr.io/stefanprodan/podinfo
+      newName: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "default:podinfo:name"}
+      newTag: 5.2.x # {"$imagepolicy": "default:podinfo:tag"}
   patchesStrategicMerge:
     - apiVersion: autoscaling/v2beta2
       kind: HorizontalPodAutoscaler
