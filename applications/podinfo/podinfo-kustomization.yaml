@@ -12,41 +12,27 @@ spec:
     name: podinfo
   validation: client
   # we supply an inline patch for the deployment
-  # patchesJson6902:
-  #   - target:
-  #       version: apps/v1
-  #       kind: Deployment
-  #       name: podinfo
-  #     patch:
-  #     - op: add
-  #       path: /metadata/labels/scheduler
-  #       value: fargate
-  #     - op: add
-  #       path: /spec/template/metadata/labels/scheduler
-  #       value: fargate
+  patchesJson6902:
+    - target:
+        version: autoscaling/v2beta2
+        kind: HorizontalPodAutoscaler
+        name: podinfo
+      patch:
+      - op: replace
+        path: /spec/minReplicas
+        value: 3
   patchesStrategicMerge:
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
         name: podinfo
+        labels:
+          scheduler: fargate
       spec:
-        replicas: 4
         template:
           metadata:
             labels:
-              scheduler: fargate
-    # this is not working with replicas patch?!
-    # - apiVersion: apps/v1
-    #   kind: Deployment
-    #   metadata:
-    #     name: podinfo
-    #     labels:
-    #       scheduler: fargate
-    #   spec:
-    #     template:
-    #       metadata:
-    #         labels:
-    #           scheduler: fargate
+              scheduler: fargate    
     - apiVersion: v1
       kind: Service
       metadata:
