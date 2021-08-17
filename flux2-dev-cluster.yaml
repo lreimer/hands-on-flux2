@@ -22,8 +22,12 @@ fargateProfiles:
   - name: fp-default
     selectors:
       - namespace: default
+        labels:
+          scheduler: fargate
       - namespace: flux-system
       - namespace: kube-system
+        labels:
+          scheduler: fargate
             
 managedNodeGroups:
   - name: managed-ng-1
