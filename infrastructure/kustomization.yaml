@@ -8,3 +8,4 @@ resources:
   - aws-observability/aws-logging.yaml
   - prometheus/
   - kubernetes-dashboard/
+  - sealed-secrets/
