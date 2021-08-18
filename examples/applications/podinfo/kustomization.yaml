@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - podinfo-kustomization.yaml
 - podinfo-source.yaml
+- podinfo-registry.yaml
+- podinfo-policy.yaml

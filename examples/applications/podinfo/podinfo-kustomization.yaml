@@ -12,13 +12,38 @@ spec:
     name: podinfo
   validation: client
   # we supply an inline patch for the deployment
+  # patchesJson6902:
+  #  - target:
+  #      Version: autoscaling/v2beta2
+  #      kind: HorizontalPodAutoscaler
+  #      name: podinfo
+  #    patch:
+  #    - op: replace
+  #      path: /spec/minReplicas
+  #      value: 3
+  images:
+    - name: ghcr.io/stefanprodan/podinfo
+      newName: ghcr.io/stefanprodan/podinfo # {"$imagepolicy": "flux-system:podinfo:name"}
+      newTag: 6.0.0 # {"$imagepolicy": "flux-system:podinfo:tag"}
   patchesStrategicMerge:
+    - apiVersion: autoscaling/v2beta2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: podinfo
+      spec:
+        minReplicas: 3
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
         name: podinfo
+        labels:
+          scheduler: fargate
       spec:
         replicas: 3
+        template:
+          metadata:
+            labels:
+              scheduler: fargate
     - apiVersion: v1
       kind: Service
       metadata:

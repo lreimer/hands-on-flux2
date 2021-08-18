@@ -5,6 +5,7 @@ metadata:
   namespace: default
 spec:
   interval: 30s
-  ref:
-    branch: master
   url: https://github.com/stefanprodan/podinfo
+  ref:
+    # branch: master
+    tag: 6.0.0
