@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: prometheus
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      version: "14.6.0"
+  interval: 5m0s
+  install:
+    remediation:
+      retries: 3
+  # https://docs.aws.amazon.com/eks/latest/userguide/prometheus.html
+  # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
+  values:
+    alertmanager:
+      persistentVolume:
+        storageClass: "gp2"
+    server:
+      persistentVolume:
+        storageClass: "gp2"
+    
