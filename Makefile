@@ -6,7 +6,7 @@ iam-policy.json:
 		--policy-document file://iam-policy.json
 
 create-dev-cluster: iam-policy.json
-	@eksctl create cluster --alb-ingress-access -f flux2-dev-cluster.yaml
+	@eksctl create cluster -f flux2-dev-cluster.yaml
 	@eksctl create iamserviceaccount \
 		--cluster=flux2-dev-cluster \
 		--namespace=kube-system \
@@ -25,7 +25,7 @@ bootstrap-flux2-dev:
   		--personal
 
 create-prod-cluster: iam-policy.json
-	@eksctl create cluster --alb-ingress-access -f flux2-prod-cluster.yaml
+	@eksctl create cluster -f flux2-prod-cluster.yaml
 	@eksctl create iamserviceaccount \
 		--cluster=flux2-prod-cluster \
 		--namespace=kube-system \
