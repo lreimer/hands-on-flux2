@@ -17,7 +17,7 @@ You need to have the following tools installed locally to be able to complete al
 # define required ENV variables for the next steps to work
 $ export GITHUB_TOKEN=<your-token>
 $ export GITHUB_USER=lreimer
-$ export AWS_ACCOUNT_ID=export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
+$ export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query Account --output text`
 
 # created 2 branches to track the individual cluster states
 $ git branch env/dev
